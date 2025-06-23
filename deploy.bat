@@ -1,47 +1,51 @@
 @echo off
 echo ================================
-echo 宠物管理系统 Chrome版本部署脚本
+echo Pet Management System Web Deploy
 echo ================================
 echo.
 
-echo 当前目录: %CD%
+echo Current directory: %CD%
 echo.
 
-echo 1. 初始化Git仓库...
+echo 1. Initializing Git repository...
 git init
 
 echo.
-echo 2. 添加所有Web文件...
+echo 2. Adding all web files...
 git add .
 
 echo.
-echo 3. 提交更改...
-git commit -m "宠物管理系统Chrome版本 - 生产就绪的Web应用"
+echo 3. Committing changes...
+git commit -m "Pet Management System Web - Production ready Flutter web app"
 
 echo.
-echo 4. 设置远程仓库...
-set /p REPO_URL="请输入GitHub仓库地址(例如: https://github.com/username/pet-management-web.git): "
+echo 4. Setting up remote repository...
+set /p REPO_URL="Enter GitHub repository URL (e.g. https://github.com/username/pet-management-web.git): "
 git remote add origin %REPO_URL%
 
 echo.
-echo 5. 推送到GitHub...
+echo 5. Pushing to GitHub...
 git branch -M main
 git push -u origin main
 
 echo.
 if %ERRORLEVEL% NEQ 0 (
-    echo 推送失败，尝试强制推送...
+    echo Push failed, trying force push...
     git push --force-with-lease origin main
 )
 
 echo.
 echo ================================
-echo 部署完成！
+echo Deployment completed!
 echo.
-echo 下一步:
-echo 1. 在Vercel中连接您的GitHub仓库
-echo 2. 选择framework: Other
-echo 3. 输出目录设置为: .
-echo 4. 立即部署!
+echo Next steps:
+echo 1. Connect your GitHub repository in Vercel
+echo 2. Select framework: Other
+echo 3. Set output directory to: .
+echo 4. Deploy now!
 echo ================================
+echo.
+echo Repository setup complete.
+echo Your web app is ready for Vercel deployment.
+echo.
 pause 
