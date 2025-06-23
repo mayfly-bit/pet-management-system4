@@ -75,9 +75,18 @@ class ExpenseService {
         throw Exception('用户未登录，无法创建费用记录');
       }
 
-      // 确保expense对象有正确的created_by字段
-      final expenseData = expense.toJson();
-      expenseData['created_by'] = currentUser.id;
+      // 构建数据库插入数据，映射正确的字段名
+      final expenseData = {
+        'exp_id': expense.expId,
+        'category_id': expense.catId, // 使用数据库中的实际字段名
+        'amount': expense.amount,
+        'date': expense.date.toIso8601String(),
+        'note': expense.note,
+        'created_by': currentUser.id,
+        'created_at': expense.createdAt.toIso8601String(),
+      };
+
+      print('尝试插入费用数据: $expenseData');
 
       // 1. Insert expense with explicit created_by
       await _client
@@ -263,7 +272,7 @@ class ExpenseService {
       await _client
           .from(SupabaseConfig.expenseCategoriesTable)
           .delete()
-          .eq('cat_id', categoryId);
+          .eq('category_id', categoryId);
 
       return true;
     } catch (e) {
@@ -337,7 +346,7 @@ class ExpenseService {
 
       // 类别过滤
       if (categoryId != null) {
-        queryBuilder = queryBuilder.eq('cat_id', categoryId);
+        queryBuilder = queryBuilder.eq('category_id', categoryId);
       }
 
       final response = await queryBuilder.order('date', ascending: false);
@@ -364,12 +373,12 @@ class ExpenseService {
 
       // Insert default categories with explicit IDs
       final defaultCategories = [
-        {'cat_id': 'default-cat-001', 'name': '食物费用', 'is_shared': true, 'created_by': userId},
-        {'cat_id': 'default-cat-002', 'name': '医疗费用', 'is_shared': true, 'created_by': userId},
-        {'cat_id': 'default-cat-003', 'name': '美容费用', 'is_shared': true, 'created_by': userId}, 
-        {'cat_id': 'default-cat-004', 'name': '用品费用', 'is_shared': true, 'created_by': userId},
-        {'cat_id': 'default-cat-005', 'name': '训练费用', 'is_shared': true, 'created_by': userId}, 
-        {'cat_id': 'default-cat-006', 'name': '其他费用', 'is_shared': true, 'created_by': userId},
+        {'category_id': 'default-cat-001', 'name': '食物费用', 'is_shared': true, 'created_by': userId},
+        {'category_id': 'default-cat-002', 'name': '医疗费用', 'is_shared': true, 'created_by': userId},
+        {'category_id': 'default-cat-003', 'name': '美容费用', 'is_shared': true, 'created_by': userId}, 
+        {'category_id': 'default-cat-004', 'name': '用品费用', 'is_shared': true, 'created_by': userId},
+        {'category_id': 'default-cat-005', 'name': '训练费用', 'is_shared': true, 'created_by': userId}, 
+        {'category_id': 'default-cat-006', 'name': '其他费用', 'is_shared': true, 'created_by': userId},
       ];
 
       await _client
