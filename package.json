@@ -1,0 +1,28 @@
+{
+  "name": "pet-management-system-web",
+  "version": "1.0.0",
+  "description": "宠物管理系统 - Chrome Web版本",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "pet-management",
+    "flutter-web",
+    "chrome",
+    "vercel",
+    "static-site"
+  ],
+  "author": "Pet Management System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mayfly-bit/pet-management-system2"
+  },
+  "homepage": "https://pet-management-web.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
