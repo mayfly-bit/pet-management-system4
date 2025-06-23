@@ -1,31 +1,35 @@
 {
-  "name": "宠物管理系统",
-  "short_name": "宠物管理",
-  "description": "完整的宠物管理和盈利分析系统",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#667eea",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "icons/Icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icons/Icon-512.png",
-      "sizes": "512x512", 
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": [
-    "business",
-    "productivity",
-    "utilities"
-  ],
-  "lang": "zh-CN",
-  "dir": "auto"
-} 
+    "name": "chongwu_guanli_xitong",
+    "short_name": "chongwu_guanli_xitong",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
